@@ -125,14 +125,14 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 #### 1.プロジェクトの作成
 ```wsl
 # ディレクトリ作成
-mkdir sso-app
-cd sso-app
+$ mkdir sso-app
+$ cd sso-app
 
 # 初期化
-npm init -y
+$ npm init -y
 
 # パッケージインストール
-npm install express express-session keycloak-connect
+$ npm install express express-session keycloak-connect
 ```
 
 #### 2.サーバーコード（Node.js）
@@ -210,6 +210,7 @@ app.listen(3000, () => {
 
 #### ターミナルからアプリ起動
 ```wsl
+$ cd sso-app
 $ node app1.js
 ```
 
@@ -252,6 +253,48 @@ app.listen(3001, () => {
 
 #### クライアント編集操作Ⅱ
 ![クライアント編集画面](Images/client_edit02.png)
+
+> 先ほどアプリでlisten設定したポートを指定:`http://localhost:3001`
+
+#### アプリの起動
+```wsl
+$ cd sso-app2
+$ node app1.js
+```
+
+#### 動作確認（２つのサイトにそれぞれアクセス）
+
+- ブラウザで`http://localhost:3000/protected`にアクセス
+- ブラウザで`http://localhost:3001/protected`にアクセス
+
+<br>結果として、最初にport:3000へアクセスした際はログイン画面が表示され、ログインを行った。
+
+次に、port:3001へアクセスするとログイン画面は表示されず、そのまま画面が表示された。
+
+これは、Keycloakにて一度認証されたセッション情報が保持されており、別アプリケーションへアクセスした際にも再認証が不要となるためである。
+
+このことから、シングルサインオン（SSO）が正常に機能していることを確認できた。
+
+#### セッションの確認
+
+- Keycloakに管理者ユーザーでログイン（ http://localhost:8080 ）
+- 検証ツールを開く（F12）
+- cookiesの中身を見る（http://localhost:8080）
+
+```bash
+# Keycloakは以下のCookieでセッション管理している
+Cookie:
+- KEYCLOAK_SESSION    xxxxxxxxxx（ログイン状態）
+- KEYCLOAK_IDENTITY   xxxxxxxxxx（ユーザー情報）
+```
+
+#### 一度セッション情報を削除してみる（Delete）
+
+削除した状態で再度port:3000のサイトにアクセスすると...<br>
+
+もう一度ログイン画面が表示されていることが分かった
+> セッション情報（Cookie）をKeycloak側で保持することで、
+ユーザーのログイン状態が管理されていることを確認した
 
 
 ## 課題・詰まった点
