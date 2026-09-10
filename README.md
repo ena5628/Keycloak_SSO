@@ -7,9 +7,10 @@ SSOの流れをハンズオンを通して学習したいと思い実施しま�
 dockerのインストールが必要
 
 ## 環境
-- OS:Windows
-- ターミナル:wsl
-- 環境:docker
+- OS：Windows 11
+- ターミナル：WSL2（Ubuntu）
+- コンテナ環境：Docker Desktop
+- 使用コンテナ：Keycloak（quay.io/keycloak/keycloak）
 
 ## 構成
 ブラウザ<br>
