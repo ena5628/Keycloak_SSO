@@ -112,7 +112,7 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 ![ログイン画面画面](Images/login_testuser02.png)
 > ここは適当に値を設定（Email,姓,名）
 
-### ログイン成功
+#### ログイン成功
 ![ログイン画面画面](Images/login_testuser03.png)
 > 作成したユーザーでログインできることを確認した。<br>
 > これにより、Keycloak上でユーザー認証が正常に機能していることが分かる。
@@ -122,7 +122,76 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 
 今回はSSOの動きを確認することが目的なので、アプリのコード自体はAIに作成してもらいました。（Node.js）
 
-#### プロジェクトの作成
+#### 1.プロジェクトの作成
+```wsl
+# ディレクトリ作成
+mkdir sso-app
+cd sso-app
+
+# 初期化
+npm init -y
+
+# パッケージインストール
+npm install express express-session keycloak-connect
+```
+
+#### 2.サーバーコード（Node.js）
+- app1.jsの作成
+```wsl
+const express = require('express');
+const session = require('express-session');
+const Keycloak = require('keycloak-connect');
+
+const app = express();
+
+const memoryStore = new session.MemoryStore();
+
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  store: memoryStore
+}));
+
+const keycloak = new Keycloak({ store: memoryStore });
+
+app.use(keycloak.middleware());
+
+app.get('/', (req, res) => {
+  res.send('トップページ（未ログインでもOK）');
+});
+
+app.get('/protected', keycloak.protect(), (req, res) => {
+  res.send('ログイン成功！保護されたページ');
+});
+
+app.listen(3000, () => {
+  console.log('http://localhost:3000');
+});
+```
+> エディタはVSCodeを使用（各自作業しやすいエディタを使ってください）
+
+#### 3.クライアントの作成（Keycloak側設定）
+
+- 管理者ユーザーでKeycloakにログインする
+
+#### クライアントの作成
+
+#### クライアントタブへ移動し、新規作成を選択
+![クライアント作成画面](Images/client01.png)
+
+![クライアント作成画面](Images/client02.png)
+> クライアントタイプ：`OpenID Connect`<br>
+> クライアントID:`sso-app`<br>
+> 名前と説明は任意
+
+
+![クライアント作成画面](Images/client03.png)
+> ここはデフォルトのままでOK
+
+![クライアント作成画面](Images/client04.png)
+> 有効なダイレクトURI:`http://localhost:3000/*`（重要）<br>
+> ウェブオリジン（CORS）:`http://localhost`
 
 
 ## 課題・詰まった点
