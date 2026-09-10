@@ -175,23 +175,23 @@ app.listen(3000, () => {
 
 - 管理者ユーザーでKeycloakにログインする
 
-#### クライアントの作成
-
 #### クライアントタブへ移動し、新規作成を選択
 ![クライアント作成画面](Images/client01.png)
 
+#### クライアント作成操作Ⅰ
 ![クライアント作成画面](Images/client02.png)
 > クライアントタイプ：`OpenID Connect`<br>
 > クライアントID:`sso-app`<br>
 > 名前と説明は任意
 
-
+#### クライアント作成操作Ⅱ
 ![クライアント作成画面](Images/client03.png)
 > ここはデフォルトのままでOK
 
+#### クライアント作成操作Ⅲ
 ![クライアント作成画面](Images/client04.png)
 > 有効なダイレクトURI:`http://localhost:3000/*`（重要）<br>
-> ウェブオリジン（CORS）:`http://localhost`
+> ウェブオリジン（CORS）:`http://localhost:3000`
 
 
 ## 課題・詰まった点
