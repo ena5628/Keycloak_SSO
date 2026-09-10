@@ -136,7 +136,7 @@ npm install express express-session keycloak-connect
 ```
 
 #### 2.サーバーコード（Node.js）
-- app1.jsの作成
+`app1.js`
 ```wsl
 const express = require('express');
 const session = require('express-session');
@@ -193,6 +193,20 @@ app.listen(3000, () => {
 > 有効なダイレクトURI:`http://localhost:3000/*`（重要）<br>
 > ウェブオリジン（CORS）:`http://localhost:3000`
 
+
+#### 4.keycloak.jsonの作成
+`keycloak.json`
+```wsl
+{
+  "realm": "test-realm",  # 作成したRealm
+  "auth-server-url": "http://localhost:8080", # Keycloakのポート
+  "ssl-required": "external",
+  "resource": "sso-app",
+  "public-client": true,
+  "confidential-port": 0
+}
+```
+> ※app.jsと同じ階層に作成すること
 
 ## 課題・詰まった点
 
