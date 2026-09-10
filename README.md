@@ -80,7 +80,7 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 
 ### 3.Userの作成
 
-今回は検証用として `testuser` を作成する。
+今回はSSO検証のため、ログイン確認用のユーザーとして `testuser` を作成する。
 
 > 手順：ユーザータブに移動　→ ユーザーの新規作成 → 資格情報（パスワード）を作成
 
@@ -95,6 +95,8 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 
 #### 資格情報（パスワード）を作成
 ![Realm作成画面](Images/create_user03.png)
+> ユーザー作成直後はパスワードが未設定のためログインできない。<br>
+> そのため、資格情報（Credentials）タブからパスワードを設定する。
 
 ![Realm作成画面](Images/create_user04.png)
 > TemporaryはOffにする
@@ -103,15 +105,16 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 
 #### ログイン画面
 ![ログイン画面画面](Images/login_testuser01.png)
-> 作成したユーザーでログイン
+> 作成したユーザーとパスワードを入力してログイン
 
 #### その他の情報を入力
-![ログイン画面画面](Images/login_testuser01.png)
+![ログイン画面画面](Images/login_testuser02.png)
 > ここは適当に値を設定（Email,姓,名）
 
 ### ログイン成功
-![ログイン画面画面](Images/login_testuser01.png)
-
+![ログイン画面画面](Images/login_testuser03.png)
+> 作成したユーザーでログインできることを確認した。<br>
+> これにより、Keycloak上でユーザー認証が正常に機能していることが分かる。
 
 ## 課題・詰まった点
 
