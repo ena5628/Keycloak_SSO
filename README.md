@@ -71,6 +71,7 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 
 > 手順：領域を管理する（Manage realms）　→　領域の作成（Create Realm）
 
+#### 領域の作成
 ![Realm作成画面](Images/realm01.png)
 
 このようになれば成功
@@ -83,16 +84,34 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 
 > 手順：ユーザータブに移動　→ ユーザーの新規作成 → 資格情報（パスワード）を作成
 
-ユーザータブに移動
+#### ユーザータブに移動
 ![Realm作成画面](Images/create_user01.png)
 
-ユーザーの新規作成
+#### ユーザーの新規作成
 ![Realm作成画面](Images/create_user02.png)
+> ユーザー名:`testuser`<br>
+> メールアドレス:`test@example.com`（任意）<br>
+> その他はそのままでOK
 
-資格情報（パスワード）を作成
+#### 資格情報（パスワード）を作成
 ![Realm作成画面](Images/create_user03.png)
 
 ![Realm作成画面](Images/create_user04.png)
+> TemporaryはOffにする
+
+### 作成したユーザーでログインしてみる（ http://localhost:8080/realms/test-realm/account ）
+
+#### ログイン画面
+![ログイン画面画面](Images/login_testuser01.png)
+> 作成したユーザーでログイン
+
+#### その他の情報を入力
+![ログイン画面画面](Images/login_testuser01.png)
+> ここは適当に値を設定（Email,姓,名）
+
+### ログイン成功
+![ログイン画面画面](Images/login_testuser01.png)
+
 
 ## 課題・詰まった点
 
