@@ -77,6 +77,23 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 ![Realm作成画面](Images/realm02.png)
 > `test-realm`がcurrent realmになる
 
+### 3.Userの作成
+
+今回は検証用として `testuser` を作成する。
+
+> 手順：ユーザータブに移動　→ ユーザーの新規作成 → 資格情報（パスワード）を作成
+
+ユーザータブに移動
+![Realm作成画面](Images/create_user01.png)
+
+ユーザーの新規作成
+![Realm作成画面](Images/create_user02.png)
+
+資格情報（パスワード）を作成
+![Realm作成画面](Images/create_user03.png)
+
+![Realm作成画面](Images/create_user04.png)
+
 ## 課題・詰まった点
 
 
