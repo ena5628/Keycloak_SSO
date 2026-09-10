@@ -279,7 +279,7 @@ $ node app1.js
 
 - Keycloakに管理者ユーザーでログイン（ http://localhost:8080 ）
 - 検証ツールを開く（F12）
-- cookiesの中身を見る（http://localhost:8080）
+- cookiesの中身を見る（Application /Storage/Cookies/http://localhost:8080）
 
 ```bash
 # Keycloakは以下のCookieでセッション管理している
