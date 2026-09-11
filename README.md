@@ -52,6 +52,9 @@ $ docker run -p 8080:8080 quay.io/keycloak/keycloak start-dev
 - quay.io/keycloak/keycloak : Dockerイメージ（使うアプリ）
 - start-dev    : 開発モードで起動
 
+> 今回`docker run`で起動しており、停止したらkeycloakの情報がすべて消えてしまうため<br>
+> 止めた場合は再度一から作業を行うようにしてください！！
+
 #### Keycloakにアクセスしてみる（`http://localhost:8080`）
 
 ![ログイン画面](Images/login01.png)
