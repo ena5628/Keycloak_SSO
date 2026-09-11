@@ -30,7 +30,7 @@ Keycloak（認証）<br>
 $ docker --version
 Docker version 29.5.3, build xxxxxxx
 ```
-> 表示されなければdockerをインストールしてください
+> 表示されなければdockerをインストールしてください<br>
 
 #### keycloakを立てる
 ```wsl
@@ -41,7 +41,7 @@ $ docker run -p 8080:8080 quay.io/keycloak/keycloak start-dev
 - quay.io/keycloak/keycloak : Dockerイメージ（使うアプリ）
 - start-dev    : 開発モードで起動
 
-#### Keycloakにアクセスしてみる（ http://localhost:8080 ）
+#### Keycloakにアクセスしてみる（`http://localhost:8080`）
 
 ![ログイン画面](Images/login01.png)
 > 管理者ユーザーでログインする必要があるみたい
@@ -53,16 +53,16 @@ $ docker run -p 8080:8080 \
 -e KEYCLOAK_ADMIN_PASSWORD=admin \
 quay.io/keycloak/keycloak start-dev
 ```
-> これで起動時に自動的に管理者ユーザーが作成される
+> これで起動時に自動的に管理者ユーザーが作成される<br>
 
-#### 再度アクセスしてみる（ http://localhost:8080 ）
+#### 再度アクセスしてみる（`http://localhost:8080`）
 
 ![ログイン画面](Images/login02.png)
 > 先ほど引数に渡した管理者ユーザー名とパスワードでログイン
 
 #### ログインに成功するとこのような画面に進めるはず
 ![ログイン画面](Images/login03.png)
-> ブラウザの警告が出ますが検証用なので無視して大丈夫です（ローカル環境で動作しているため基本大丈夫）
+> ブラウザの警告が出ますが検証用なので無視して大丈夫です（ローカル環境で動作しているため基本大丈夫）<br>
 
 ### 2.Realmの作成
 
@@ -83,7 +83,7 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 
 今回はSSO検証のため、ログイン確認用のユーザーとして `testuser` を作成する。
 
-> 手順：ユーザータブに移動　→ ユーザーの新規作成 → 資格情報（パスワード）を作成
+> 手順：ユーザータブに移動　→ ユーザーの新規作成 → 資格情報（パスワード）を作成 <br>
 
 #### ユーザータブに移動
 ![Realm作成画面](Images/create_user01.png)
@@ -92,30 +92,30 @@ Keycloakでは、Realmという単位でユーザーや認証設定を管理す�
 ![Realm作成画面](Images/create_user02.png)
 > ユーザー名:`testuser`<br>
 > メールアドレス:`test@example.com`（任意）<br>
-> その他はそのままでOK
+> その他はそのままでOK<br>
 
 #### 資格情報（パスワード）を作成
 ![Realm作成画面](Images/create_user03.png)
 > ユーザー作成直後はパスワードが未設定のためログインできない。<br>
-> そのため、資格情報（Credentials）タブからパスワードを設定する。
+> そのため、資格情報（Credentials）タブからパスワードを設定する。<br>
 
 ![Realm作成画面](Images/create_user04.png)
-> TemporaryはOffにする
+> TemporaryはOffにする<br>
 
-### 作成したユーザーでログインしてみる（ http://localhost:8080/realms/test-realm/account ）
+### 作成したユーザーでログインしてみる（`http://localhost:8080/realms/test-realm/account`）
 
 #### ログイン画面
 ![ログイン画面画面](Images/login_testuser01.png)
-> 作成したユーザーとパスワードを入力してログイン
+> 作成したユーザーとパスワードを入力してログイン<br>
 
 #### その他の情報を入力
 ![ログイン画面画面](Images/login_testuser02.png)
-> ここは適当に値を設定（Email,姓,名）
+> ここは適当に値を設定（Email,姓,名）<br>
 
 #### ログイン成功
 ![ログイン画面画面](Images/login_testuser03.png)
 > 作成したユーザーでログインできることを確認した。<br>
-> これにより、Keycloak上でユーザー認証が正常に機能していることが分かる。
+> これにより、Keycloak上でユーザー認証が正常に機能していることが分かる。<br>
 
 ### 4.アプリの作成
 実際にSSOの動きを確認していきます。
@@ -169,7 +169,7 @@ app.listen(3000, () => {
   console.log('http://localhost:3000');
 });
 ```
-> エディタはVSCodeを使用（各自作業しやすいエディタを使ってください）
+> エディタはVSCodeを使用（各自作業しやすいエディタを使ってください）<br>
 
 #### 3.クライアントの作成（Keycloak側設定）
 
@@ -182,16 +182,15 @@ app.listen(3000, () => {
 ![クライアント作成画面](Images/client02.png)
 > クライアントタイプ：`OpenID Connect`<br>
 > クライアントID:`sso-app`<br>
-> 名前と説明は任意
+> 名前と説明は任意<br>
 
 #### クライアント作成操作Ⅱ
 ![クライアント作成画面](Images/client03.png)
-> ここはデフォルトのままでOK
-
+> ここはデフォルトのままでOK<br>
 #### クライアント作成操作Ⅲ
 ![クライアント作成画面](Images/client04.png)
 > 有効なダイレクトURI:`http://localhost:3000/*`（重要）<br>
-> ウェブオリジン（CORS）:`http://localhost:3000`
+> ウェブオリジン（CORS）:`http://localhost:3000`<br>
 
 
 #### 4.keycloak.jsonの作成
@@ -206,7 +205,7 @@ app.listen(3000, () => {
   "confidential-port": 0
 }
 ```
-> ※app.jsと同じ階層に作成すること
+> ※app.jsと同じ階層に作成すること<br>
 
 #### ターミナルからアプリ起動
 ```wsl
@@ -214,9 +213,9 @@ $ cd sso-app
 $ node app1.js
 ```
 
-#### サイトにアクセスしてログイン（ http://localhost:3000/protected ）
+#### サイトにアクセスしてログイン（`http://localhost:3000/protected`）
 うまくいけばログイン画面に飛ぶはず
-> もしうまくいかなかったら、クライアントの設定内容とkeycloak.jsonの設定内容等を確認してください（ファイルやフォルダ等の名前も合わせておくと確実）
+> もしうまくいかなかったら、クライアントの設定内容とkeycloak.jsonの設定内容等を確認してください（ファイルやフォルダ等の名前も合わせておくと確実）<br>
 
 ### 5.SSOログインを体験（本題）
 今のままではSSOログインを体験できないので、同じアプリをコピーして一度ログインしたらもう片方のアプリがログイン不要で起動できることを体験します。
@@ -254,7 +253,7 @@ app.listen(3001, () => {
 #### クライアント編集操作Ⅱ
 ![クライアント編集画面](Images/client_edit02.png)
 
-> 先ほどアプリでlisten設定したポートを指定:`http://localhost:3001`
+> 先ほどアプリでlisten設定したポートを指定:`http://localhost:3001`<br>
 
 #### アプリの起動
 ```wsl
@@ -267,7 +266,7 @@ $ node app1.js
 - ブラウザで`http://localhost:3000/protected`にアクセス
 - ブラウザで`http://localhost:3001/protected`にアクセス
 
-<br>結果として、最初にport:3000へアクセスした際はログイン画面が表示され、ログインを行った。
+<br>動作確認として、最初にport:3000へアクセスした際はログイン画面が表示され、ログインを行った。
 
 次に、port:3001へアクセスするとログイン画面は表示されず、そのまま画面が表示された。
 
@@ -277,12 +276,12 @@ $ node app1.js
 
 #### セッションの確認
 
-- Keycloakに管理者ユーザーでログイン（ http://localhost:8080 ）
+- Keycloakに管理者ユーザーでログイン（`http://localhost:8080`）
 - 検証ツールを開く（F12）
-- cookiesの中身を見る（Application /Storage/Cookies/http://localhost:8080）
+- cookiesの中身を見る（`Applicationタブ /Storage/Cookies/http://localhost:8080`）
 
 ```bash
-# Keycloakは以下のCookieでセッション管理している
+# Keycloakは以下のCookieでセッションIDを管理している
 Cookie:
 - KEYCLOAK_SESSION    xxxxxxxxxx（ログイン状態）
 - KEYCLOAK_IDENTITY   xxxxxxxxxx（ユーザー情報）
@@ -294,7 +293,29 @@ Cookie:
 
 もう一度ログイン画面が表示されていることが分かった
 > セッション情報（Cookie）をKeycloak側で保持することで、
-ユーザーのログイン状態が管理されていることを確認した
+ユーザーのログイン状態が管理されていることを確認した<br>
+
+### 5.疑問に感じたところと確認
+ここで疑問に感じたのは、Keycloakのサイト（`http://localhost:8080`）でしかそのCookie（`localhost:8080`）が見られないこと
+
+Q. なぜサイトを閉じて再度開いてもログイン済みなのか？
+
+A.  
+Cookieはブラウザ内にドメインごとに保存されており、  
+`localhost:8080` のCookieはそのドメインのときだけ参照できる。  
+
+> ブラウザを閉じても、有効期限内のCookieは削除されないため、  <br>
+再度 `http://localhost:8080` にアクセスした際に  <br>
+ブラウザが自動でCookieを送信し、  <br>
+Keycloak側(起動したコンテナ)のセッションと紐づくことでログイン状態が維持される。<br>
+
+#### 確認方法
+- Chrome右上の「︙」
+- `設定`を選択
+- 「プライバシーとセキュリティ」
+- 「サードパーティCookie」 → 「すべてのサイトデータと権限を表示」
+
+
 
 
 ## 課題・詰まった点
