@@ -12,6 +12,8 @@ dockerのインストールが必要
 - コンテナ環境：Docker Desktop
 - 使用コンテナ：Keycloak（quay.io/keycloak/keycloak）
 
+> Keycloakとはログイン認証やSSOをまとめて管理してくれるサーバーのこと
+
 ## 構成と実行フロー
 
 ### 初回ログイン（ログイン画面表示）
