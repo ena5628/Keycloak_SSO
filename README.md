@@ -14,8 +14,14 @@ dockerのインストールが必要
 
 ## 構成と実行フロー
 ![構成と実行フロー](Images/system_diagram01.png)
+> リダイレクトとは、サーバーがブラウザに別のURLへアクセスするよう指示し、自動的に移動させる仕組み
+
 ![構成と実行フロー](Images/system_diagram02.png)
+
 ![構成と実行フロー](Images/system_diagram03.png)
+
+![構成と実行フロー](Images/system_diagram04.png)
+
 
 ## 実施内容
 
