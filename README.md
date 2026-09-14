@@ -54,8 +54,6 @@ $ docker run -p 8080:8080 quay.io/keycloak/keycloak start-dev
 - quay.io/keycloak/keycloak : Dockerイメージ（使うアプリ）
 - start-dev    : 開発モードで起動
 
-> 今回`docker run`で起動しており、停止したらkeycloakの情報がすべて消えてしまうため<br>
-> 止めた場合は再度一から作業を行うようにしてください！！
 
 #### Keycloakにアクセスしてみる（`http://localhost:8080`）
 
@@ -63,13 +61,37 @@ $ docker run -p 8080:8080 quay.io/keycloak/keycloak start-dev
 > 管理者ユーザーでログインする必要があるみたい
 
 #### 管理者ユーザーを起動時に環境変数として渡す
+管理者ユーザーを起動時に渡す作業をします。
+
+また、`docker run`だと、コンテナ停止時にkeycloakの情報が初期化されてしまうので、`docker-compose.yml`ファイルを作成し、<br>
+volume設定をすることでkeycloak情報のデータの永続化を行います。
+
+`docker-compose.yml`
 ```wsl
-$ docker run -p 8080:8080 \
--e KEYCLOAK_ADMIN=admin \
--e KEYCLOAK_ADMIN_PASSWORD=admin \
-quay.io/keycloak/keycloak start-dev
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    container_name: keycloak
+    command: start-dev
+    ports:
+      - "8080:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - keycloak_data:/opt/keycloak/data
+
+volumes:
+  keycloak_data:
+
 ```
-> これで起動時に自動的に管理者ユーザーが作成される<br>
+
+#### docker composeの起動
+```
+$ docker compose up -d
+```
+
+> 停止する際は`docker compose down`を使って停止してください。
 
 #### 再度アクセスしてみる（`http://localhost:8080`）
 
